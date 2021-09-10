@@ -1,0 +1,474 @@
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.*;
+import java.util.LinkedList;
+
+public class Choice extends JFrame {
+    public JPanel Zadan;
+    private JButton StartButton;
+    private JLabel HelloUser;
+    private MainFrame mainframe;
+    private JPanel Ava1;private JLabel Pic1;
+    private JPanel Ava2;private JLabel Pic2;
+    private JPanel Ava3;private JLabel Pic3;
+    private JPanel Ava4;private JLabel Pic4;
+    private JPanel Ava5;private JLabel Pic5;
+    private JPanel Ava6;private JLabel Pic6;
+    private JPanel Ava7;private JLabel Pic7;
+    private JPanel Ava8;private JLabel Pic8;
+    private JPanel Ava9;private JLabel Pic9;
+    private JPanel Ava10;private JLabel Pic10;
+    private JPanel Ava11;private JLabel Pic11;
+    private JPanel Ava12;private JLabel Pic12;
+    private JPanel Ava13;private JLabel Pic13;
+    private JPanel Ava14;private JLabel Pic14;
+    private JPanel Ava15;private JLabel Pic15;
+    private JPanel Ava16;  private JLabel Pic16;
+    private JButton backButton;
+    private JLabel Count;
+    private Request request;
+
+
+    public Choice(String a,int rec) {
+        super("Animal Pairs");
+        Dimension dimemsion = Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds(dimemsion.width/2-650/2,
+                dimemsion.height/2-650/2,650,650);
+        setVisible(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Zadan.setVisible(true);
+        add(Zadan);
+        HelloUser.setText("Hello "+ a);
+        Count.setText("0/8");
+        Pic1=new JLabel(new ImageIcon("1.png"));
+        Ava1.add(Pic1);
+        Ava1.setVisible(true);
+        Pic2=new JLabel(new ImageIcon("2.png"));
+        Ava2.add(Pic2);
+        Ava2.setVisible(true);
+        Pic3=new JLabel(new ImageIcon("3.png"));
+        Ava3.add(Pic3);
+        Ava3.setVisible(true);
+        Pic4=new JLabel(new ImageIcon("4.png"));
+        Ava4.add(Pic4);
+        Ava4.setVisible(true);
+        Pic5=new JLabel(new ImageIcon("5.png"));
+        Ava5.add(Pic5);
+        Ava5.setVisible(true);
+        Pic6=new JLabel(new ImageIcon("6.png"));
+        Ava6.add(Pic6);
+        Ava6.setVisible(true);
+        Pic7=new JLabel(new ImageIcon("7.png"));
+        Ava7.add(Pic7);
+        Ava7.setVisible(true);
+        Pic8=new JLabel(new ImageIcon("8.png"));
+        Ava8.add(Pic8);
+        Ava8.setVisible(true);
+        Pic9=new JLabel(new ImageIcon("9.png"));
+        Ava9.add(Pic9);
+        Ava9.setVisible(true);
+        Pic10=new JLabel(new ImageIcon("10.png"));
+        Ava10.add(Pic10);
+        Ava10.setVisible(true);
+        Pic11=new JLabel(new ImageIcon("11.png"));
+        Ava11.add(Pic11);
+        Ava11.setVisible(true);
+        Pic12=new JLabel(new ImageIcon("12.png"));
+        Ava12.add(Pic12);
+        Ava12.setVisible(true);
+        Pic13=new JLabel(new ImageIcon("13.png"));
+        Ava13.add(Pic13);
+        Ava13.setVisible(true);
+        Pic14=new JLabel(new ImageIcon("14.png"));
+        Ava14.add(Pic14);
+        Ava14.setVisible(true);
+        Pic15=new JLabel(new ImageIcon("15.png"));
+        Ava15.add(Pic15);
+        Ava15.setVisible(true);
+        Pic16=new JLabel(new ImageIcon("16.png"));
+        Ava16.add(Pic16);
+        Ava16.setVisible(true);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                mainframe= new MainFrame();
+                mainframe.setVisible(true);
+            }
+        });
+        int[] value = {0};
+        StartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(value[0]==8){
+                    setVisible(false);
+                    request = new Request(a,getIconsPosition(),rec);
+                    request.setVisible(true);
+                }
+            }
+        });
+
+        Pic1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int b = Get(1);
+                if(b == 0&&value[0]<8) {
+                    Set(1,1);
+                    Pic1.setIcon(new ImageIcon("1_1.png"));
+                    if(value[0]<8){
+                    value[0]++;}
+                    Count.setText(value[0]+"/8");
+                }
+                else if(b== 1) {
+                    Set(1,0);
+                    Pic1.setIcon(new ImageIcon("1.png"));
+                    if(value[0]>0){
+                    value[0]--;}
+                    Count.setText(value[0]+"/8");
+                }
+
+            }
+        });
+        Pic2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int b = Get(2);
+                if(b == 0&&value[0]<8) {
+                    Set(2,1);
+                    Pic2.setIcon(new ImageIcon("2_1.png"));
+                    
+                    if(value[0]<8){
+                        value[0]++;}
+                    Count.setText(value[0]+"/8");
+                }
+                else if(b== 1) {
+                    Set(2,0);
+                    Pic2.setIcon(new ImageIcon("2.png"));
+                    if(value[0]>0){
+                        value[0]--;}
+                    Count.setText(value[0]+"/8");
+                }
+
+            }
+        });
+        Pic3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int b = Get(3);
+                if(b == 0&&value[0]<8) {
+                    Set(3,1);
+                    Pic3.setIcon(new ImageIcon("3_1.png"));
+                    if(value[0]<8){
+                        value[0]++;}
+                    Count.setText(value[0]+"/8");
+                }
+                else if(b== 1) {
+                    Set(3,0);
+                    Pic3.setIcon(new ImageIcon("3.png"));
+                    if(value[0]>0){
+                        value[0]--;}
+                    Count.setText(value[0]+"/8");
+                }
+
+            }
+        });
+        Pic4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int b = Get(4);
+                if(b == 0&&value[0]<8) {
+                    Set(4,1);
+                    Pic4.setIcon(new ImageIcon("4_1.png"));
+                    if(value[0]<8){
+                        value[0]++;}
+                    Count.setText(value[0]+"/8");
+                }
+                else if(b== 1) {
+                    Set(4,0);
+                    Pic4.setIcon(new ImageIcon("4.png"));
+                    if(value[0]>0){
+                        value[0]--;}
+                    Count.setText(value[0]+"/8");
+                }
+
+            }
+        });
+        Pic5.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int b = Get(5);
+                if(b == 0&&value[0]<8) {
+                    Set(5,1);
+                    Pic5.setIcon(new ImageIcon("5_1.png"));
+                    if(value[0]<8){
+                        value[0]++;}
+                    Count.setText(value[0]+"/8");
+                }
+                else if(b== 1) {
+                    Set(5,0);
+                    Pic5.setIcon(new ImageIcon("5.png"));
+                    if(value[0]>0){
+                        value[0]--;}
+                    Count.setText(value[0]+"/8");
+                }
+
+            }
+        });
+        Pic6.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int b = Get(6);
+                if(b == 0&&value[0]<8) {
+                    Set(6,1);
+                    Pic6.setIcon(new ImageIcon("6_1.png"));
+                    if(value[0]<8){
+                        value[0]++;}
+                    Count.setText(value[0]+"/8");
+                }
+                else if(b== 1) {
+                    Set(6,0);
+                    Pic6.setIcon(new ImageIcon("6.png"));
+                    if(value[0]>0){
+                        value[0]--;}
+                    Count.setText(value[0]+"/8");
+                }
+
+            }
+        });
+        Pic7.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int b = Get(7);
+                if(b == 0&&value[0]<8) {
+                    Set(7,1);
+                    Pic7.setIcon(new ImageIcon("7_1.png"));
+                    if(value[0]<8){
+                        value[0]++;}
+                    Count.setText(value[0]+"/8");
+                }
+                else if(b== 1) {
+                    Set(7,0);
+                    Pic7.setIcon(new ImageIcon("7.png"));
+                    if(value[0]>0){
+                        value[0]--;}
+                    Count.setText(value[0]+"/8");
+                }
+
+            }
+        });
+        Pic8.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int b = Get(8);
+                if(b == 0&&value[0]<8) {
+                    Set(8,1);
+                    Pic8.setIcon(new ImageIcon("8_1.png"));
+                    if(value[0]<8){
+                        value[0]++;}
+                    Count.setText(value[0]+"/8");
+                }
+                else if(b== 1) {
+                    Set(8,0);
+                    Pic8.setIcon(new ImageIcon("8.png"));
+                    if(value[0]>0){
+                        value[0]--;}
+                    Count.setText(value[0]+"/8");
+                }
+
+            }
+        });
+        Pic9.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int b = Get(9);
+                if(b == 0&&value[0]<8) {
+                    Set(9,1);
+                    Pic9.setIcon(new ImageIcon("9_1.png"));
+                    if(value[0]<8){
+                        value[0]++;}
+                    Count.setText(value[0]+"/8");
+                }
+                else if(b== 1) {
+                    Set(9,0);
+                    Pic9.setIcon(new ImageIcon("9.png"));
+                    if(value[0]>0){
+                        value[0]--;}
+                    Count.setText(value[0]+"/8");
+                }
+
+            }
+        });
+        Pic10.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int b = Get(10);
+                if(b == 0&&value[0]<8) {
+                    Set(10,1);
+                    Pic10.setIcon(new ImageIcon("10_1.png"));
+                    if(value[0]<8){
+                        value[0]++;}
+                    Count.setText(value[0]+"/8");
+                }
+                else if(b== 1) {
+                    Set(10,0);
+                    Pic10.setIcon(new ImageIcon("10.png"));
+                    if(value[0]>0){
+                        value[0]--;}
+                    Count.setText(value[0]+"/8");
+                }
+
+            }
+        });
+        Pic11.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int b = Get(11);
+                if(b == 0&&value[0]<8) {
+                    Set(11,1);
+                    Pic11.setIcon(new ImageIcon("11_1.png"));
+                    if(value[0]<8){
+                        value[0]++;}
+                    Count.setText(value[0]+"/8");
+                }
+                else if(b== 1) {
+                    Set(11,0);
+                    Pic11.setIcon(new ImageIcon("11.png"));
+                    if(value[0]>0){
+                        value[0]--;}
+                    Count.setText(value[0]+"/8");
+                }
+
+            }
+        });
+
+        Pic12.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int b = Get(12);
+                if(b == 0&&value[0]<8) {
+                    Set(12,1);
+                    Pic12.setIcon(new ImageIcon("12_1.png"));
+                    if(value[0]<8){
+                        value[0]++;}
+                    Count.setText(value[0]+"/8");
+                }
+                else if(b== 1) {
+                    Set(12,0);
+                    Pic12.setIcon(new ImageIcon("12.png"));
+                    if(value[0]>0){
+                        value[0]--;}
+                    Count.setText(value[0]+"/8");
+                }
+
+            }
+        });
+        Pic13.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int b = Get(13);
+                if(b == 0&&value[0]<8) {
+                    Set(13,1);
+                    Pic13.setIcon(new ImageIcon("13_1.png"));
+                    if(value[0]<8){
+                        value[0]++;}
+                    Count.setText(value[0]+"/8");
+                }
+                else if(b== 1) {
+                    Set(13,0);
+                    Pic13.setIcon(new ImageIcon("13.png"));
+                    if(value[0]>0){
+                        value[0]--;}
+                    Count.setText(value[0]+"/8");
+                }
+
+            }
+        });
+        Pic14.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int b = Get(14);
+                if(b == 0&&value[0]<8) {
+                    Set(14,1);
+                    Pic14.setIcon(new ImageIcon("14_1.png"));
+                    if(value[0]<8){
+                        value[0]++;}
+                    Count.setText(value[0]+"/8");
+                }
+                else if(b== 1) {
+                    Set(14,0);
+                    Pic14.setIcon(new ImageIcon("14.png"));
+                    if(value[0]>0){
+                        value[0]--;}
+                    Count.setText(value[0]+"/8");
+                }
+
+            }
+        });
+        Pic15.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int b = Get(15);
+                if(b == 0&&value[0]<8) {
+                    Set(15,1);
+                    Pic15.setIcon(new ImageIcon("15_1.png"));
+                    if(value[0]<8){
+                        value[0]++;}
+                    Count.setText(value[0]+"/8");
+                }
+                else if(b== 1) {
+                    Set(15,0);
+                    Pic15.setIcon(new ImageIcon("15.png"));
+                    if(value[0]>0){
+                        value[0]--;}
+                    Count.setText(value[0]+"/8");
+                }
+
+            }
+        });
+        Pic16.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int b = Get(16);
+                if(b == 0&&value[0]<8) {
+                    Set(16,1);
+                    Pic16.setIcon(new ImageIcon("16_1.png"));
+                    if(value[0]<8){
+                        value[0]++;}
+                    Count.setText(value[0]+"/8");
+                }
+                else if(b== 1) {
+                    Set(16,0);
+                    Pic16.setIcon(new ImageIcon("16.png"));
+                    if(value[0]>0){
+                        value[0]--;}
+                    Count.setText(value[0]+"/8");
+                }
+
+            }
+        });
+
+    }
+
+    int []a1 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    int []a = {0,0,0,0,0,0,0,0,0};
+    void Set(int set,int count){
+        a1[set]=count;
+    }
+    int Get(int get){
+        return a1[get];
+    }
+
+    int [] getIconsPosition(){
+        int k=1;
+        for(int i=0;i<17;i++)
+        if(a1[i]==1){
+            a[k] =i;
+            k++;}
+        return a;
+    }
+}
